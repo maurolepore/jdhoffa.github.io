@@ -64,21 +64,28 @@ author:
     - label: "Website"
       icon: "fas fa-fw fa-link"
       url: "https://jdhoffa.github.io"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/jdhoffart"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/jdhoffa"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://linkedin.com/in/jackson-hoffart/"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/jdhoffart"
 
 footer:
   links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/jdhoffart"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/jdhoffa"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://linkedin.com/in/jackson-hoffart/"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/jdhoffart"
+
 
 defaults:
   # _posts
