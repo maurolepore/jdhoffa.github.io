@@ -15,7 +15,7 @@
 # in the templates via {{ site.myvariable }}.
 title: Working Title
 email: jackson.hoffart@gmail.com
-description: My personal website, where I host my work, software, recipes, pictures from trips, thoughts, anything...
+description: Jackson Hoffart's personal blog, hosting work, software, thoughts, recipes etc.
 twitter_username: jdhoffart
 github_username: jdhoffa
 minimal_mistakes_skin: default # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
@@ -58,7 +58,7 @@ plugins:
 author:
   name   : "Jackson Hoffart"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "Software Developer, Environmentalist, Cook. I hope to create tools and knowledge to help solve the climate crisis. "
+  bio    : "Canadian software developer, environmentalist, cook. I hope to create analytical tools and knowledge to help address the climate crisis. "
   location: "Berlin, DE"
   links:
     - label: "Website"
