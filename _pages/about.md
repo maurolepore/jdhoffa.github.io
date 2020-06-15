@@ -3,10 +3,10 @@ permalink: /about/
 title: "About"
 ---
 
-Heya! I'm Jackson and I'm an analyst/ software developer/ overall nerd. I put most of my effort into developing tools and research to help address the climate crisis.
+My name is Jackson and I'm a data analyst, software developer and environmentalist.
 
-I'm a Toronto-born Canadian and I studied Physics at McGill University until 2017. Machine learning got pretty trendy while I was in my undergrad, so I focused my bachelor thesis on a python-implementation of a gaussian process regression model to study exoplanets (if you're interested in any of this kind of stuff, check out Dan Foreman-Mackey's [work](https://dfm.io/), he's rad).
+I was born in Toronto, Canada, and I studied Physics at McGill University until 2017. I focused my bachelor thesis on using Machine Learning to study exoplanets, and learnt a bit of python along the way. As it became more obvious that not enough was being done to curb climate change, I decided to leverage what I knew to help as much as I could.
 
-The reality of climate change had gotten more and more obvious over my undergrad and I decided I wanted to leverage everything I knew to help fight the good fight. This more or less brings us to now.  I work for a non-profit think tank in Berlin called [2 Degrees Investing Inititaitve](https://2degrees-investing.org/). We exist in the burgeoning field of climate finance, and are working to align the financial sector to climate goals.
+I now focus most of my effort into developing tools and research to help align financial institutions and policy-makers with climate goals, using clear, scientifically sound metrics. I work for a non-profit think tank in Berlin called [2 Degrees Investing Inititaitve](https://2degrees-investing.org/) that exists in the burgeoning field of climate finance. I also like learning about and advocating for new ways to make the world more sustainble, both at the institutional, and invididual level.
 
 I'm always keen to help with interesting projects, so feel free to reach out to me on [twitter](https://twitter.com/jdhoffart).
