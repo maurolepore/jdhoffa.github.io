@@ -1,5 +1,5 @@
 ---
-title: "Hello world!"
+title: "hello world!"
 date: 2020-05-24
 categories:
   - blog
