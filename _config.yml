@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Fan of Jort Hacks
+title: Working Title
 email: jackson.hoffart@gmail.com
 description: Jackson Hoffart's personal blog.
 twitter_username: jdhoffart
@@ -37,14 +37,7 @@ include:
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+exclude: ['R', '*.Rproj', 'Gemfile', 'Gemfile.lock']
 
 # Plugins (previously gems:)
 plugins:
