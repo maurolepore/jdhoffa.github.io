@@ -1,0 +1,135 @@
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "assets/images/",
+  out.width = "100%"
+)
+```
+The core suite of r2dii packages ([r2dii.data](https://2degreesinvesting.github.io/r2dii.data/), [r2dii.match](https://2degreesinvesting.github.io/r2dii.match/) and [r2dii.analysis](https://2degreesinvesting.github.io/r2dii.analysis/)), are now published on CRAN!
+
+The r2dii suite was developed to implement the core functionality of the [Paris Agreement Capital Transition Assessment (PACTA)](https://www.transitionmonitor.com/) in R. PACTA is a methodology which allows financial institutions to aggregate climate-related data associated to their portfolios, and compare the result against climate scenarios.
+
+## Installation
+
+You can easily install all three packages directly from CRAN using:
+
+```{r eval = FALSE}
+install.packages(
+  c(
+    "r2dii.data", 
+    "r2dii.match", 
+    "r2dii.analysis"
+    )
+  )
+```
+
+To get the latest development version of each of the packages, you can install directly from GitHub using:
+
+``` {r eval = FALSE}
+devtools::install_github("2DegreesInvesting/r2dii.data")
+```
+
+**Warning:** Development versions are experimental and may be unstable. Proceed with caution.
+{: .notice--warning}
+
+## r2dii.data
+
+[r2dii.data](https://2degreesinvesting.github.io/r2dii.data/) provides a series of fake datasets. These are mainly meant to be used as a tool to learn how the methodology works, and also to provide an easy sandbox for testing. The built-in `data_dictionary` provides a view of all datasets in the package, along with variable definitions
+
+```{r}
+library(dplyr)
+library(r2dii.data)
+
+data_dictionary %>%
+  distinct(dataset)
+```
+
+Some of the most useful datasets are: 
+* `loanbook_demo`: a loanbook dataset which can be used as a template to format real loanbook/ portfolio data. 
+* `ald_demo`: a so-called "asset-level" dataset, containing crucial climate data at the asset level. (eg. power-plant capacity data, automotive car production, steel company emission factors)
+* `scenario_demo_2020`: a fake climate scenario, offering technology pathways that would likely limit warming to less than 2 degrees celsius. 
+
+## r2dii.match
+
+[r2dii.match](https://2degreesinvesting.github.io/r2dii.match/) provides the tools necessary to match the counter-parties in a loanbook to the climate data of the assets that they own. 
+
+Owing to the fact that many lending portfolios are exposed to mid- and small- size companies, which are often not publicly-listed, matching data can be tricky. To achieve these links, we have written wrappers around some common fuzzy matching algorithms, which play nicely with formatted `loanbook`'s and `ald`'s. 
+
+You can run the matching algorithm on sample data provided by `r2dii.data`:
+
+```{r}
+library(r2dii.match)
+
+matched <- match_name(loanbook_demo, ald_demo)
+
+matched %>%
+  select(name, sector, name_ald, sector_ald, score) %>%
+  head()
+```
+
+After the initial matching, you must manually verify which of the matches you would like to keep. To do so, simply save `matched` as a .csv, and open in excel or similar. If you would like to keep a match, write the `score` to `1`. If you don't want the match, leave the `score` as anything but `1`
+
+```{r}
+matched %>%
+  filter(score != 1) %>%
+  arrange(desc(score)) %>%
+  select(name, sector, name_ald, sector_ald, score) %>%
+  head()
+```
+
+The final step is to prioritize your matches. This ensures that the same loan isn't accidentally matched to multiple `ald` companies. 
+
+Read the validated match file back into R and run: 
+
+```{r}
+match_result <- matched %>%
+  prioritize()
+
+match_result %>%
+  select(name_direct_loantaker, loan_size_outstanding, sector, name_ald) %>%
+  head()
+```
+
+## r2dii.analysis
+
+The final step is to analyze your matched dataset, and compare the results to a climate scenario. 
+
+You can apply scenario targets to your loanbook data by calling: 
+
+```{r}
+library(r2dii.analysis)
+
+portfolio_targets <- match_result %>%
+  target_market_share(
+    ald_demo,
+    scenario_demo_2020,
+    region_isos_demo
+  )
+
+portfolio_targets %>%
+  head()
+```
+
+and plot the distribution of technologies using `ggplot2`:
+
+```{r technology-mix}
+library(ggplot2)
+
+portfolio_targets %>%
+  filter(
+    sector == "power",
+    weighted_production_metric != "normalized_corporate_economy",
+    year == max(year)
+  ) %>% # different targets can be plotted by setting these filters
+  group_by(technology) %>%
+  ggplot(aes(
+    x = weighted_production_metric, y = weighted_production_value, fill =
+      technology
+  )) +
+  geom_col(position = "fill") +
+  labs(
+    x = "Metric",
+    y = "Weighted Capacity [%]"
+  )
+```
